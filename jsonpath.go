@@ -9,7 +9,7 @@ import (
 
 // Marshal returns the JSON encoding of keysAndValues.
 // Returns marshaled []byte and error in case if it can't be marshaled
-func Marshal(keysAndValues map[string]string) ([]byte, error) {
+func Marshal(keysAndValues map[string]interface{}) ([]byte, error) {
 	var result interface{}
 	var err error
 	for key, value := range keysAndValues {
@@ -20,7 +20,7 @@ func Marshal(keysAndValues map[string]string) ([]byte, error) {
 	return json.Marshal(result)
 }
 
-func buildEmbedded(result *interface{}, keys []string, value string) error {
+func buildEmbedded(result *interface{}, keys []string, value interface{}) error {
 	var err error
 	if len(keys) == 0 {
 		*result = value
